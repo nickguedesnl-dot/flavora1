@@ -1,4 +1,10 @@
-const cache = { data: null, ts: 0 };
+const cache = { data: null, ts: 0 }; // cache-clear
+```
+5. **Commit changes**
+
+Aguarda o deploy terminar (~1 min) e abre:
+```
+https://flavora1-teste.vercel.app/api/trends
 const TTL = 24 * 60 * 60 * 1000;
 
 const RECIPES = [
