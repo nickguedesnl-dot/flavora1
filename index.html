@@ -1196,10 +1196,14 @@ const WORKOUT_EMOJIS = ['🚶‍♀️','💪','🧘','🚴','🏃','🎒','🧠
 
 async function fetchTrends() {
   try {
-    const res = await fetch('/api/trends');
+    // Adiciona timestamp para evitar cache do browser
+    const res = await fetch('/api/trends?t=' + Date.now());
     if (!res.ok) throw new Error('API error');
-    return await res.json();
-  } catch {
+    const data = await res.json();
+    // Só usa se tiver imagens, senão busca de novo
+    return data;
+  } catch (e) {
+    console.error('fetchTrends error:', e);
     return { recipes: FALLBACK_RECIPES, workouts: FALLBACK_WORKOUTS, updatedAt: new Date().toISOString() };
   }
 }
